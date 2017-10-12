@@ -628,6 +628,7 @@ var i,
 	preferredDoc = window.document,
 	dirruns = 0,
 	done = 0,
+	caches = [],
 	classCache = createCache(),
 	tokenCache = createCache(),
 	compilerCache = createCache(),
@@ -910,6 +911,7 @@ function createCache() {
 		}
 		return (cache[ key + " " ] = value);
 	}
+	caches.push(cache);
 	return cache;
 }
 
@@ -2644,6 +2646,8 @@ if ( !assert(function( div ) {
 	});
 }
 
+Sizzle.caches = caches;
+
 return Sizzle;
 
 })( window );
@@ -2657,6 +2661,7 @@ jQuery.unique = Sizzle.uniqueSort;
 jQuery.text = Sizzle.getText;
 jQuery.isXMLDoc = Sizzle.isXML;
 jQuery.contains = Sizzle.contains;
+jQuery.caches = Sizzle.caches;
 
 
 
